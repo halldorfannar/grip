@@ -1,6 +1,20 @@
 Grip -- GitHub Readme Instant Preview
 =====================================
 
+This is Grip command. It is a fork by @halldorfannar of the original Grip 
+where all the software deployment issues have been resolved and the solution 
+is packaged into one cohesive app for *Windows*.
+
+Run 
+
+  grip --help
+  
+to get more info. The software requires a vanilla Python 2.7 interpreter.
+It currently piggybacks on the one pulled by packman. You can change this
+in the grip.cmd file.
+
+Below is the original README contents of the upstream repo:
+
 [![Current version on PyPI](http://img.shields.io/pypi/v/grip.svg)][pypi]
 <a href="https://gratipay.com/grip/" title="Thank you!" target="_blank">
   <img src="https://img.shields.io/gratipay/grip.svg" alt="Thank you!">
