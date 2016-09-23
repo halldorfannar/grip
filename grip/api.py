@@ -110,7 +110,7 @@ def export(path=None, user_content=False, context=None, username=None,
             out_filename = '{0}.html'.format(filetitle)
 
     if not export_to_stdout:
-        print('Exporting to', out_filename, file=sys.stderr)
+        print('Exporting to', out_filename, file=sys.stdout)
 
     page = render_page(path, user_content, context, username, password,
                        render_offline, render_wide, render_inline, api_url,
