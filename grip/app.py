@@ -143,6 +143,7 @@ class Grip(Flask):
         self.add_url_rule(rate_limit_route, 'rate_limit',
                           self._render_rate_limit_page)
         self.errorhandler(403)(self._render_rate_limit_page)
+        self.errorhandler(UnicodeDecodeError)(self._exit_on_unicode_decode_error)
 
     def _render_asset(self, subpath):
         """
@@ -257,6 +258,19 @@ class Grip(Flask):
         auth = request.args.get('auth')
         is_auth = auth == '1' if auth else bool(self.auth)
         return render_template('limit.html', is_authenticated=is_auth), 403
+
+    def _exit_on_unicode_decode_error(self, exc=None):
+        """
+        Set the proper failure case
+        """
+        if exc:
+            print(exc, file=sys.stderr)
+            end = exc.start
+            begin = end-30
+            if begin < 0:
+                begin = 0
+            print("Letters before illegal character: '%s'" % exc.object[begin:end], file=sys.stderr)
+        sys.exit(1)
 
     def _download(self, url, binary=False):
         if urlparse(url).netloc:

@@ -135,7 +135,8 @@ class DirectoryReader(ReadmeReader):
         if silent or os.path.exists(path):
             return path
 
-        raise ReadmeNotFoundError(path, 'File not found: ' + path)
+        print('File not found: ' + path, file=sys.stderr)
+        sys.exit(1)
 
     def _read_text(self, filename):
         """
